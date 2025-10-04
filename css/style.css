@@ -1,0 +1,217 @@
+/* ======= GLOBAL ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  font-size: 16px; /* Base para rem */
+}
+
+body {
+  background: linear-gradient(135deg, #0d1117, #1b1f27);
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
+}
+
+/* ======= HEADER ======= */
+header {
+  background: rgba(25, 28, 34, 0.95);
+  text-align: center;
+  padding: 2rem 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+header h1 {
+  color: #1e90ff;
+  font-size: clamp(1.5rem, 4vw, 2.2rem); /* cresce conforme a tela */
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* ======= FORM CONTAINER ======= */
+.container {
+  background: #1c1f26;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  padding: clamp(2rem, 3vw, 3rem);
+  max-width: 90%;
+  margin: 4rem auto;
+  width: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.75);
+}
+
+/* ======= FIELDSET ======= */
+fieldset {
+  border: 2px solid #1e90ff;
+  border-radius: 16px;
+  padding: clamp(1.5rem, 2vw, 2rem);
+  margin-bottom: 2.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+fieldset:hover {
+  border-color: #63b3ff;
+  box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+}
+
+legend {
+  font-weight: 700;
+  color: #1e90ff;
+  padding: 0 15px;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  letter-spacing: 0.5px;
+}
+
+/* ======= FORM ELEMENTS ======= */
+label {
+  display: block;
+  margin-top: 1.2rem;
+  font-weight: 500;
+  color: #ccc;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: clamp(0.8rem, 1.5vw, 1rem);
+  margin-top: 0.4rem;
+  border: 1.5px solid #444;
+  border-radius: 12px;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  transition: all 0.3s ease;
+  background: #2a2d36;
+  color: #e0e0e0;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #888;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #1e90ff;
+  outline: none;
+  box-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+  transform: scale(1.02);
+}
+
+/* textarea */
+textarea {
+  resize: none;
+  min-height: clamp(100px, 20vw, 140px);
+}
+
+/* ======= BUTTON ======= */
+button {
+  width: 100%;
+  padding: clamp(0.9rem, 1.5vw, 1.1rem);
+  background: linear-gradient(135deg, #1e90ff, #0d4f8b);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  margin-top: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #63b3ff, #1e70d1);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* ======= HIDDEN CLASS ======= */
+.hidden {
+  display: none;
+}
+
+/* ======= VALOR ======= */
+.preco-box {
+  margin-top: 1.8rem;
+  background: #252934;
+  border-left: 5px solid #1e90ff;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border-radius: 12px;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+  color: #e0e0e0;
+  transition: background 0.3s ease;
+}
+
+.preco-box:hover {
+  background: #2f3442;
+}
+
+#valor-servico {
+  color: #1e90ff;
+  font-weight: 800;
+}
+
+/* ======= FOOTER ======= */
+footer {
+  text-align: center;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  background: rgba(28, 31, 38, 0.95);
+  color: #ccc;
+  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  margin-top: auto;
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+/* ======= RESPONSIVE EXTRA ======= */
+@media (max-width: 1024px) {
+  .container {
+    padding: clamp(2rem, 3vw, 3rem);
+    margin: 3rem auto;
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  .container {
+    padding: clamp(1.8rem, 3vw, 2.5rem);
+  }
+  button {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: clamp(1.3rem, 5vw, 1.7rem);
+  }
+  .container {
+    padding: clamp(1.2rem, 5vw, 1.8rem);
+    margin: 2rem auto;
+  }
+  button {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+    padding: clamp(0.8rem, 4vw, 0.95rem);
+  }
+}
