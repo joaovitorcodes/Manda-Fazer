@@ -11,6 +11,10 @@ const raInput = document.getElementById("ra");
 const senhaInput = document.getElementById("senha");
 
 const form = document.getElementById("formulario");
+const pagamentoSelect = document.getElementById("pagamento");
+const pixComprovante = document.getElementById("pix-comprovante");
+const comprovanteInput = document.getElementById("comprovante");
+const btnEnviar = document.getElementById("btnEnviar");
 
 // ======== FUNÇÃO PARA ATUALIZAR VALOR ========
 function atualizarValor() {
@@ -89,11 +93,15 @@ tipoFuturoSelect.addEventListener("change", () => {
   atualizarRaSenha();
 });
 
-// ======== ENVIO SILENCIOSO FORMSPREE ========
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+// ======== MOSTRAR CAMPOS PIX ========
+pagamentoSelect.addEventListener("change", () => {
+  pixComprovante.classList.toggle("hidden", pagamentoSelect.value !== "pix");
+  comprovanteInput.required = pagamentoSelect.value === "pix";
+});
 
-  // Validação RA e senha se visível
+// ======== VALIDAÇÃO SIMPLES ANTES DO ENVIO ========
+btnEnviar.addEventListener("click", () => {
+  // Validação RA e senha
   if (!raSenhaBox.classList.contains("hidden")) {
     if (raInput.value.trim().length < 3) {
       alert("Por favor, coloque um RA válido (mínimo 3 caracteres).");
@@ -107,40 +115,13 @@ form.addEventListener("submit", async function (e) {
     }
   }
 
-  const data = {
-    nome: form.nome.value,
-    email: form.email.value,
-    contato: form.contato.value,
-    mensagem: form.mensagem.value,
-    servico: form.servico.value,
-    tipo_trabalho: form["tipo-trabalho"]?.value || "",
-    tipo_futuro: form["tipo-futuro"]?.value || "",
-    serie: form.serie?.value || "",
-    ra: form.ra?.value || "",
-    senha: form.senha?.value || "",
-    detalhe: form.detalhe.value,
-    prazo: form.prazo.value,
-    pagamento: form.pagamento.value,
-    valor: valorDisplay.textContent
-  };
-
-  try {
-    await fetch(form.action, {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    });
-
-    // Limpar formulário após envio
-    form.reset();
-    valorDisplay.textContent = "R$ 0,00";
-    trabalhoOpcoes.classList.add("hidden");
-    salaFuturoOpcoes.classList.add("hidden");
-    raSenhaBox.classList.add("hidden");
-  } catch (error) {
-    // Nenhuma mensagem será mostrada ao cliente
+  // Se PIX, validar comprovante
+  if (pagamentoSelect.value === "pix" && (!comprovanteInput || comprovanteInput.files.length === 0)) {
+    alert("Por favor, envie o comprovante do PIX.");
+    if(comprovanteInput) comprovanteInput.focus();
+    return false;
   }
+
+  // Enviar formulário normalmente
+  form.submit();
 });

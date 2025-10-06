@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento - ShoopMaste</title>
+  <link rel="stylesheet" href="css/pagamentos.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pagamento via Pix</h1>
+    <p class="desc">Finalize o pagamento antes de enviar o pedido.</p>
+
+    <div class="pix-box">
+      <h2>Chave Pix</h2>
+      <p id="chavePix">Jvc891916@gmail.com</p>
+      <p class="nome">Nome: <strong>João Vitor</strong></p>
+      <button id="copiarPix">Copiar Chave Pix</button>
+      <p class="aviso">Após o pagamento, envie o comprovante abaixo.</p>
+    </div>
+
+    <div class="upload-area">
+      <h3>Envie o comprovante</h3>
+      <input type="file" id="comprovante" accept="image/*,.pdf">
+      <div id="preview"></div>
+    </div>
+
+    <div class="botoes">
+      <button id="confirmarPagamento" disabled>Confirmar e Enviar Pedido</button>
+      <a href="index.html" class="voltar">Voltar</a>
+    </div>
+
+    <p id="statusMsg"></p>
+  </div>
+
+  <script src="js/pagamento.js"></script>
+</body>
+</html>

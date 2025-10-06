@@ -1,132 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manda Fazer</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manda Fazer</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <header>
-        <div class="logo">
-            <h1>Manda Fazer</h1>
-            <p>Valorize o seu dinheiro, gastando com sabedoria. Não perca tempo em negociações por e-mail ou WhatsApp.
-                Aqui no Manda fazer., você solicita, contrata e paga seu serviço de forma simples, rápida e segura.</p>
+  <header>
+    <div class="logo">
+      <h1>Manda Fazer</h1>
+      <p>Valorize o seu dinheiro, gastando com sabedoria. Não perca tempo em negociações por e-mail ou WhatsApp. Aqui no Manda Fazer, você solicita, contrata e paga seu serviço de forma simples, rápida e segura.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <form id="formulario" action="https://formcarry.com/s/EIEzCOdIydG" method="POST" enctype="multipart/form-data">
+      <!-- INFORMAÇÕES DO CLIENTE -->
+      <fieldset>
+        <legend>💬 Suas Informações</legend>
+
+        <label for="nome">Seu Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+
+        <label for="email">Seu E-mail:</label>
+        <input type="email" id="email" name="email" placeholder="seuemail@gmail.com" required>
+
+        <label for="contato">Telefone / WhatsApp:</label>
+        <input type="tel" id="contato" name="contato" placeholder="(xx) xxxxx-xxxx" required>
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Deixe um recado..." required></textarea>
+      </fieldset>
+
+      <!-- SERVIÇOS -->
+      <fieldset>
+        <legend>💼 Nossos Serviços</legend>
+
+        <label for="servico">Serviço desejado:</label>
+        <select id="servico" name="servico" required>
+          <option value="">Selecione...</option>
+          <option value="site">Criação de Site</option>
+          <option value="logo">Criação de Logo</option>
+          <option value="trabalho">Trabalhos Escolares</option>
+          <option value="outro">Outro</option>
+        </select>
+
+        <!-- Campos extras -->
+        <div id="trabalho-opcoes" class="hidden">
+          <label for="serie">Série / Sala:</label>
+          <input type="text" id="serie" name="serie" placeholder="Ex: 2º Ano - Sala A">
+
+          <label for="tipo-trabalho">Tipo de trabalho:</label>
+          <select id="tipo-trabalho" name="tipo-trabalho">
+            <option value="">Selecione...</option>
+            <option value="sala-futuro">Sala do Futuro</option>
+            <option value="digitado">Digitado e impresso</option>
+            <option value="manuscrito">Manuscrito</option>
+          </select>
+
+          <div id="sala-futuro-opcoes" class="hidden">
+            <label for="tipo-futuro">Escolha o tipo:</label>
+            <select id="tipo-futuro" name="tipo-futuro">
+              <option value="">Selecione...</option>
+              <option value="tarefa">Tarefa</option>
+              <option value="exp">EXP</option>
+            </select>
+          </div>
+
+          <div id="ra-senha" class="hidden">
+            <label for="ra">RA (Registro do Aluno):</label>
+            <input type="text" id="ra" name="ra" placeholder="Ex: 123456" autocomplete="username">
+
+            <label for="senha">Senha de acesso à Sala do Futuro:</label>
+            <input type="password" id="senha" name="senha" placeholder="Senha de acesso" autocomplete="current-password">
+
+            <p class="info-pequena">O seu RA e a senha de acesso serão usados apenas para identificar sua Sala do Futuro. Após a conclusão das atividades, você pode ficar tranquilo: será notificado e todas as suas informações, incluindo senha e cadastro, serão imediatamente excluídas, garantindo total segurança e privacidade.</p>
+          </div>
         </div>
-    </header>
 
-    <main class="container">
-        <form id="formulario" action="https://formspree.io/f/manpbnar" method="POST">
-            <!-- INFORMAÇÕES DO CLIENTE -->
-            <fieldset>
-                <legend>💬 Suas Informações</legend>
+        <label for="detalhe">Detalhes do serviço:</label>
+        <textarea id="detalhe" name="detalhe" placeholder="Descreva o que deseja..." required></textarea>
 
-                <label for="nome">Seu Nome:</label>
-                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+        <label for="prazo">Prazo estimado:</label>
+        <select id="prazo" name="prazo" required>
+          <option value="">Selecione...</option>
+          <option value="urgente">Urgente (até 7 dias)</option>
+          <option value="medio">Médio (2 a 4 semanas)</option>
+          <option value="longo">Longo prazo (mais de 1 mês)</option>
+        </select>
 
-                <label for="email">Seu E-mail:</label>
-                <input type="email" id="email" name="email" placeholder="seuemail@gmail.com" required>
+        <!-- Exibição do valor -->
+        <div class="preco-box">
+          <p><strong>💰 Valor estimado:</strong> <span id="valor-servico">R$ 0,00</span></p>
+        </div>
+      </fieldset>
 
-                <label for="contato">Telefone / WhatsApp:</label>
-                <input type="tel" id="contato" name="contato" placeholder="(xx) xxxxx-xxxx" required>
+      <!-- PAGAMENTO -->
+      <fieldset>
+        <legend>💳 Pagamento</legend>
+        <label for="pagamento">Forma de Pagamento:</label>
+        <select id="pagamento" name="pagamento" required>
+          <option value="">Selecione...</option>
+          <option value="pix">Pix</option>
+          <option value="cartao">Cartão</option>
+          <option value="boleto">Boleto Bancário</option>
+          <option value="dinheiro">Dinheiro</option>
+        </select>
 
-                <label for="mensagem">Mensagem:</label>
-                <textarea id="mensagem" name="mensagem" placeholder="Deixe um recado..." required></textarea>
-            </fieldset>
+        <div id="pix-comprovante" class="hidden">
+          <p><strong>Nome:</strong> João Vitor Vasconcelos</p>
+          <p><strong>Chave Pix:</strong> jvc891916@gmail.com</p>
+          <input type="file" id="comprovante" name="comprovante" accept="image/*,.pdf">
+        </div>
+      </fieldset>
 
-            <!-- SERVIÇOS -->
-            <fieldset>
-                <legend>💼 Nossos Serviços</legend>
+      <button type="button" id="btnEnviar">Enviar Pedido</button>
+      <p id="statusMsg"></p>
+    </form>
+  </main>
 
-                <label for="servico">Serviço desejado:</label>
-                <select id="servico" name="servico" required>
-                    <option value="">Selecione...</option>
-                    <option value="site">Criação de Site</option>
-                    <option value="logo">Criação de Logo</option>
-                    <option value="trabalho">Trabalhos Escolares</option>
-                    <option value="outro">Outro</option>
-                </select>
+  <footer>
+    <p>© 2025 Manda Fazer — Todos os direitos reservados.</p>
+  </footer>
 
-                <!-- Campos extras -->
-                <div id="trabalho-opcoes" class="hidden">
-                    <label for="serie">Série / Sala:</label>
-                    <input type="text" id="serie" name="serie" placeholder="Ex: 2º Ano - Sala A">
-
-                    <label for="tipo-trabalho">Tipo de trabalho:</label>
-                    <select id="tipo-trabalho" name="tipo-trabalho">
-                        <option value="">Selecione...</option>
-                        <option value="sala-futuro">Sala do Futuro</option>
-                        <option value="digitado">Digitado e impresso</option>
-                        <option value="manuscrito">Manuscrito</option>
-                    </select>
-
-                    <div id="sala-futuro-opcoes" class="hidden">
-                        <label for="tipo-futuro">Escolha o tipo:</label>
-                        <select id="tipo-futuro" name="tipo-futuro">
-                            <option value="">Selecione...</option>
-                            <option value="tarefa">Tarefa</option>
-                            <option value="exp">EXP</option>
-                        </select>
-                    </div>
-
-                    <!-- Campos de RA e Senha (ocultos inicialmente) -->
-                    <div id="ra-senha" class="hidden">
-                        <label for="ra">RA (Registro do Aluno):</label>
-                        <input type="text" id="ra" name="ra" placeholder="Ex: 123456" autocomplete="username">
-
-                        <label for="senha">Senha de acesso à Sala do Futuro:</label>
-                        <input type="password" id="senha" name="senha" placeholder="Senha de acesso"
-                            autocomplete="current-password">
-
-                        <p class="info-pequena">O seu RA e a senha de acesso serão usados apenas para identificar sua
-                            Sala do Futuro. Após a conclusão das atividades, você pode ficar tranquilo: será notificado
-                            e todas as suas informações, incluindo senha e cadastro, serão imediatamente excluídas,
-                            garantindo total segurança e privacidade.</p>
-                    </div>
-                </div>
-
-                <label for="detalhe">Detalhes do serviço:</label>
-                <textarea id="detalhe" name="detalhe" placeholder="Descreva o que deseja..." required></textarea>
-
-                <label for="prazo">Prazo estimado:</label>
-                <select id="prazo" name="prazo" required>
-                    <option value="">Selecione...</option>
-                    <option value="urgente">Urgente (até 7 dias)</option>
-                    <option value="medio">Médio (2 a 4 semanas)</option>
-                    <option value="longo">Longo prazo (mais de 1 mês)</option>
-                </select>
-
-                <!-- Exibição do valor -->
-                <div class="preco-box">
-                    <p><strong>💰 Valor estimado:</strong> <span id="valor-servico">R$ 0,00</span></p>
-                </div>
-            </fieldset>
-
-            <!-- PAGAMENTO -->
-            <fieldset>
-                <legend>💳 Pagamento</legend>
-                <label for="pagamento">Forma de Pagamento:</label>
-                <select id="pagamento" name="pagamento" required>
-                    <option value="">Selecione...</option>
-                    <option value="pix">Chave PIX</option>
-                    <option value="cartao">Cartão</option>
-                    <option value="boleto">Boleto Bancário</option>
-                    <option value="dinheiro">Dinheiro</option>
-                </select>
-            </fieldset>
-
-            <button type="submit">Enviar Pedido</button>
-            <p id="statusMsg"></p>
-        </form>
-    </main>
-
-    <footer>
-        <p>© 2025 Manda Fazer — Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
-
 </html>
