@@ -93,12 +93,6 @@ tipoFuturoSelect.addEventListener("change", () => {
   atualizarRaSenha();
 });
 
-// ======== MOSTRAR CAMPOS PIX ========
-pagamentoSelect.addEventListener("change", () => {
-  pixComprovante.classList.toggle("hidden", pagamentoSelect.value !== "pix");
-  comprovanteInput.required = pagamentoSelect.value === "pix";
-});
-
 // ======== VALIDAÇÃO SIMPLES ANTES DO ENVIO ========
 btnEnviar.addEventListener("click", () => {
   // Validação RA e senha
@@ -115,13 +109,76 @@ btnEnviar.addEventListener("click", () => {
     }
   }
 
-  // Se PIX, validar comprovante
-  if (pagamentoSelect.value === "pix" && (!comprovanteInput || comprovanteInput.files.length === 0)) {
-    alert("Por favor, envie o comprovante do PIX.");
-    if(comprovanteInput) comprovanteInput.focus();
-    return false;
-  }
-
   // Enviar formulário normalmente
   form.submit();
+});
+
+// ELEMENTOS DO CHAT
+const abrirChat = document.getElementById("abrirChat");
+const chatBody = document.getElementById("chatBody");
+const chatMensagens = document.getElementById("chatMensagens");
+const chatInput = document.getElementById("chatInput");
+const chatEnviar = document.getElementById("chatEnviar");
+
+// ABRIR / FECHAR CHAT
+abrirChat.addEventListener("click", () => {
+  chatBody.classList.toggle("hidden");
+  if(!chatBody.classList.contains("hidden")) {
+    chatInput.focus(); // foca no input ao abrir
+  }
+});
+
+// ADICIONAR MENSAGEM AO CHAT
+function adicionarMensagem(msg, classe) {
+  const p = document.createElement("p");
+  p.textContent = msg;
+  p.classList.add(classe);
+  chatMensagens.appendChild(p);
+  chatMensagens.scrollTop = chatMensagens.scrollHeight; // rola para baixo
+}
+
+// RESPOSTA AUTOMÁTICA SIMULADA
+function responderAutomatica(usuarioMsg) {
+  let resposta = "Desculpe, não entendi. 🤔";
+
+  usuarioMsg = usuarioMsg.toLowerCase();
+
+  if(usuarioMsg.includes("olá") || usuarioMsg.includes("oi")) {
+    resposta = "Olá! 👋 Como posso ajudá-lo hoje?";
+  } else if(usuarioMsg.includes("site")) {
+    resposta = "Você quer criar um site? Posso te ajudar!";
+  } else if(usuarioMsg.includes("logo")) {
+    resposta = "Deseja criar uma logo? Me conte mais detalhes!";
+  } else if(usuarioMsg.includes("trabalho")) {
+    resposta = "Precisa de ajuda com trabalhos escolares? Podemos cuidar disso!";
+  } else if(usuarioMsg.includes("exp") || usuarioMsg.includes("tarefa")) {
+    resposta = "Sobre Sala do Futuro, podemos criar EXP e Tarefas juntos!";
+  } else if(usuarioMsg.includes("ajuda")) {
+    resposta = "Claro! Me diga qual serviço você precisa que eu te explico o passo a passo.";
+  }
+
+  // Simula digitação do bot
+  setTimeout(() => {
+    adicionarMensagem(resposta, "bot-msg");
+  }, 800);
+}
+
+// ENVIAR MENSAGEM
+function enviarMensagem() {
+  const msg = chatInput.value.trim();
+  if(msg === "") return;
+  adicionarMensagem(msg, "user-msg"); // adiciona mensagem do usuário
+  chatInput.value = "";
+  responderAutomatica(msg); // responde automaticamente
+}
+
+// ENVIAR COM BOTÃO
+chatEnviar.addEventListener("click", enviarMensagem);
+
+// ENVIAR COM ENTER
+chatInput.addEventListener("keypress", (e) => {
+  if(e.key === "Enter") {
+    e.preventDefault();
+    enviarMensagem();
+  }
 });
