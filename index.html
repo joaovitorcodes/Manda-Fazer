@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manda Fazer - Qualidade e Agilidade</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Manda Fazer</h1>
+        <p>O seu tempo vale ouro. Receba seu serviço com a qualidade que você merece.</p>
+        <div class="badges-topo">
+            <span class="badge-vendas"><i class="fas fa-trophy"></i> +250 entregas</span>
+            <span class="badge-demanda blink"><i class="fas fa-fire"></i> 4 vagas restantes hoje</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <form id="formulario" action="https://formspree.io/f/manpbnar" method="POST" enctype="multipart/form-data">
+
+            <fieldset>
+                <legend>💬 Suas Informações</legend>
+                <label for="nome">Seu Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Ex: João Silva" required>
+
+                <label for="email">Seu E-mail:</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@gmail.com" required>
+
+                <label for="contato">WhatsApp:</label>
+                <input type="tel" id="contato" name="contato" placeholder="(xx) xxxxx-xxxx" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>💼 Detalhes do Serviço</legend>
+                <label for="servico">O que você precisa?</label>
+                <select id="servico" name="servico" required>
+                    <option value="">Selecione...</option>
+                    <option value="site">Criação de Site</option>
+                    <option value="logo">Criação de Logo</option>
+                    <option value="trabalho">Trabalhos Escolares</option>
+                    <option value="resumo">Resumo de Livro</option>
+                    <option value="slides">Slides/Apresentação</option>
+                </select>
+
+                <div id="trabalho-opcoes" class="hidden">
+                    <label for="tipo-trabalho">Tipo de trabalho:</label>
+                    <select id="tipo-trabalho" name="tipo-trabalho">
+                        <option value="">Selecione...</option>
+                        <option value="sala-futuro">Sala do Futuro</option>
+                        <option value="digitado">Digitado</option>
+                        <option value="manuscrito">Manuscrito</option>
+                    </select>
+
+                    <div id="sala-futuro-opcoes" class="hidden">
+                        <label for="tipo-futuro">Categoria:</label>
+                        <select id="tipo-futuro" name="tipo-futuro">
+                            <option value="">Selecione...</option>
+                            <option value="tarefa">Tarefa</option>
+                            <option value="exp">EXP</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label for="detalhe">Descrição do pedido:</label>
+                <textarea id="detalhe" name="detalhe" placeholder="Detalhe o máximo possível..." required></textarea>
+
+                <label for="data_entrega">Data de Entrega Desejada:</label>
+                <input type="datetime-local" id="data_entrega" name="data_entrega" required>
+                <p id="aviso-urgencia" class="hidden aviso-alerta">🚀 Taxa de Urgência Aplicada (+20%)</p>
+
+                <div class="extras-grid">
+                    <label class="extra-card">
+                        <input type="checkbox" id="fura_fila" name="fura_fila">
+                        <span>⚡ Prioridade Total (+R$15)</span>
+                    </label>
+                    <label class="extra-card">
+                        <input type="checkbox" id="revisao_extra" name="revisao_extra">
+                        <span>🛡️ Revisão Extra (+R$10)</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>🎁 Cupom ou Bônus</legend>
+                <label for="cupom">Tem um código de desconto?</label>
+                <input type="text" id="cupom" name="cupom" placeholder="Ex: VIP-JOAO-123">
+
+                <div id="cupom-status-container" class="hidden">
+                    <span id="cupom-icon"></span>
+                    <span id="msg-cupom"></span>
+                </div>
+            </fieldset>
+
+            <div class="preco-box">
+                <span>💰 Valor Total:</span>
+                <span id="valor-servico">R$ 0,00</span>
+            </div>
+
+            <fieldset>
+                <legend>💳 Pagamento</legend>
+                <select id="pagamento" name="pagamento" required>
+                    <option value="">Escolha como pagar...</option>
+                    <option value="pix">Pix (Imediato)</option>
+                    <option value="cartao">Cartão / Mercado Pago</option>
+                </select>
+
+                <div id="pix-area" class="hidden pix-container">
+                    <p>Pague <strong id="valor-pix">R$ 0,00</strong></p>
+                    <textarea id="pix-copia-cola" readonly></textarea>
+                    <button type="button" id="copiarPix">Copiar Código Pix</button>
+                    <label>Anexe o Comprovante:</label>
+                    <input type="file" id="comprovante" name="comprovante">
+                </div>
+            </fieldset>
+
+            <button type="button" id="btnEnviar">Finalizar Pedido</button>
+        </form>
+
+        <section class="indicacao-central">
+            <h3>🎁 Programa de Parceiros</h3>
+            <p>Gere um código exclusivo com seu nome e ganhe R$15,00 em cada indicação!</p>
+            <div id="area-geradora">
+                <input type="text" id="nome-indicador" placeholder="Seu primeiro nome">
+                <button type="button" id="btn-gerar-codigo">Criar Meu Cupom</button>
+            </div>
+            <div id="seu-codigo-resultado" class="hidden">
+                <p>Seu código profissional é:</p>
+                <div class="codigo-destaque">
+                    <strong id="codigo-gerado"></strong>
+                </div>
+                <p><small>Compartilhe este código. Quando alguém usar, você ganha bônus!</small></p>
+                <button type="button" id="btn-reset-codigo" class="btn-mini">Trocar Nome</button>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/5557178258896" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <button id="btn-ajuda" class="ajuda-float">?</button>
+
+    <div id="modal-ajuda" class="modal-overlay hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Como funciona?</h2>
+            <div class="guia-passos">
+                <p>1. Preencha os detalhes do seu pedido.</p>
+                <p>2. O preço é calculado automaticamente.</p>
+                <p>3. Efetue o pagamento e anexe o comprovante.</p>
+                <p>4. Clique em finalizar e pronto!</p>
+                <p>Dica: Gere cupom exclusivo, compartilhe com amigos e ganhem descontos em serviços acadêmicos.</p>
+            </div>
+            <button id="fechar-guia">Entendido</button>
+        </div>
+    </div>
+
+    <div id="modal-compartilhar" class="modal-overlay hidden">
+        <div class="modal-content" style="text-align: center;">
+            <h2>🎉 Pedido Enviado!</h2>
+            <p>Seu pedido foi processado com sucesso.</p>
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p><strong>Ganhe R$15,00</strong> indicando um amigo agora!</p>
+            <div class="codigo-destaque">
+                <strong id="codigo-para-compartilhar"></strong>
+            </div>
+            <button id="btn-compartilhar-whatsapp"
+                style="background: #25D366; color: white; border: none; padding: 1.2rem; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; margin-bottom: 10px; font-size: 1.1rem;">
+                <i class="fab fa-whatsapp"></i> Compartilhar no WhatsApp
+            </button>
+            <button id="btn-voltar-inicio"
+                style="background: transparent; color: #94a3b8; border: 1px solid #94a3b8; padding: 0.8rem; width: 100%; border-radius: 12px; cursor: pointer;">
+                Não, obrigado. Voltar ao início.
+            </button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
